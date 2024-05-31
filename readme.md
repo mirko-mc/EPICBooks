@@ -15,7 +15,7 @@ ESERCIZI:
     - Assicurati che dentro ad ogni card ci sia un pulsante "Aggiungi al carrello"
     - Quando il pulsante viene cliccato...
         1. Aggiungi il libro alla lista del carrello
-        2. Cambia lo stile della card per mostrare che è già stata aggiunta (un bordo colorato a un badge vanno bene)
+        2. Cambia lo stile della card per mostrare che è già stata aggiunta (un bordo colorato o un badge vanno bene)
     - Aggiungi un input di testo che funzioni come una barra di ricerca. Quando l'utente scrive più di 3 caratteri, filtra il risultato dell'API per renderizzare solo i libri con un titolo che corrisponda, anche parzialmente, al contenuto dell'input.
     SUGGERIMENTO: usa .filter()
     
