@@ -13,49 +13,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createCards(image, title, price, i) {
   main.innerHTML += `
-    <div class="col-3">
+  <div class="col-3">
     <div class="card">
-    <img src="${image}" class="card-img-top" alt="${title}">
-            <div class="card-body">
-            <h5 class="card-title text-truncate">${title}</h5>
-            <p class="card-text">${price} €</p>
-            <div class="d-flex justify-content-around">
-            <a href="#" class="btn btn-primary" onclick="addToCart(this)" id="${i}">Aggiungi al carrello</a>
-            <a href="#" class="btn btn-primary">Salta prodotto</a>
-            </div>
-            </div>
-                  </div>
-                  </div>
-                  `;
+      <img src="${image}" class="card-img-top" alt="${title}">
+      <div class="card-body">
+        <h5 class="card-title text-truncate">${title}</h5>
+        <p class="card-text">${price} €</p>
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-primary" onclick="addToCart(this)" id="${i}">Aggiungi al carrello</button>
+        <button class="btn btn-primary">Salta prodotto</button>
+      </div>
+    </div>
+  </div>
+  `;
 }
 
-//     1. Aggiungi il libro alla lista del carrello
-// - Quando il pulsante AGGIUNGI AL CARRELLO viene cliccato...
-//     2. Cambia lo stile della card per mostrare che è già stata aggiunta (un bordo colorato o un badge vanno bene)
-// EXTRA FACOLTATIVI
 // - Dai la possibilità all'utente di cancellare libri dal loro carrello
-// - Conta gli elementi nel carrello e mostra il risultato nella sezione carrello
 // - Crea un pulsante per svuotare il carrello
-function addToCart(book) {
-  console.log(book.id);
-  const aside = document.querySelector("aside");
-  getData().then((books) => {
-    aside.innerHTML += `
+function addToCart(cart) {
+  // const cart2 = document.getElementById(cart.id);
+  // console.log(cart2);
+  // console.log(cart.id);
+  const SUPERCONTAINER = document.querySelector("#superContainer .row");
+  if (!document.getElementById("cart")) {
+    SUPERCONTAINER.innerHTML += `
+    <aside id="cart" class="col-2 gx-3 gy-4">
+      <div class="col-12">
+      <h3>CARRELLO</h3>
+      <span>LIBRI AGGIUNTI : </span>
+      <button class="btn btn-primary" onclick="clearCart()">Svuota carrello</button>
+      </div>
+    </aside>`;
+  }
+  const title = document.querySelectorAll("aside .title");
+  const LIBRIAGGIUNTI = document.querySelector("aside span");
+  const ASIDE = document.querySelector("aside");
+  LIBRIAGGIUNTI.textContent = `LIBRI AGGIUNTI : ${title.length}`;
+  // console.log(title.length);
+  getData().then((book, i) => {
+    for (const item of title) {
+      if (item.textContent.includes(book[cart.id].title))
+        return alert("Libro già presente nel carrello.");
+    }
+    // console.log("ORA SONO QUI");
+    ASIDE.innerHTML += `
     <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-12">
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">${
-                      books[book.id].title
-                    }</h5>
-                    <p class="card-text">${books[book.id].price}</p>
-                </div>
-            </div>
-        </div>
+      <div class="card-body">
+        <h5 class="title text-truncate">${book[cart.id].title}</h5>
+        <p class="card-text">${book[cart.id].price}</p>
+      </div>
     </div>
+  
     `;
-
-    console.log(books[book.id].title);
+    cart.classList.toggle("disabled");
+    console.log(cart.classList);
   });
 }
 async function getData() {
@@ -90,4 +101,8 @@ function searchBook() {
         : "";
     });
   });
+}
+
+function clearCart() {
+  document.getElementById("cart").remove();
 }

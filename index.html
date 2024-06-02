@@ -16,14 +16,14 @@
             <div class="d-flex justify-content-around">
                 <h1>EPICBooks</h1>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="searchBook" onkeyup="searchBook()" placeholder="Looking for..."
-                        value="">
+                    <input type="text" class="form-control" id="searchBook" onkeyup="searchBook()"
+                        placeholder="Looking for..." value="">
                     <label for="searchBook">Looking for...</label>
                 </div>
             </div>
         </div>
     </header>
-    <section class="container">
+    <section id="superContainer" class="container">
         <div class="row">
             <main class="col-10 d-flex flex-wrap justify-content-evenly gx-3 gy-4">
                 <!-- 
@@ -41,8 +41,9 @@
                             <h5 class="card-title text-truncate">.title</h5>
                             <p class="card-text">.price €</p>
                             <div class="d-flex justify-content-around">
-                                <a href="#" class="btn btn-primary" onclick="addToCart(this)">Aggiungi al carrello</a>
-                                <a href="#" class="btn btn-primary">Salta prodotto</a>
+                                <a href="#" class="btn btn-primary disabled" onclick="addToCart(this)"
+                                    id="${i}">Aggiungi al carrello</a>
+                                <a href="" class="btn btn-primary">Salta prodotto</a>
                             </div>
                         </div>
                     </div>
@@ -53,14 +54,15 @@
 
                 <!-- ****************************************************************************************************************************************************************** -->
             </main>
-            <aside class="col-2 gx-3 gy-4">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-12">
-                            <div class="card-body">
-                                <h5 class="card-title text-truncate">TITOLO</h5>
-                                <p class="card-text">PREZZO</p>
-                            </div>
+            <aside id="cart" class="col-2 gx-3 gy-4">
+                <div class="col-12">
+                    <h3>CARRELLO</h3>
+                    <span>LIBRI AGGIUNTI : </span>
+                    <button class="btn btn-primary" onclick="clearCart()">Svuota carrello</button>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="title text-truncate">TITOLO</h5>
+                            <p class="card-text">PREZZO</p>
                         </div>
                     </div>
                 </div>
