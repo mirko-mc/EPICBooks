@@ -120,8 +120,6 @@ function clearCart() {
 }
 
 function deleteBook(trash, asin) {
-  console.log(asin);
-  console.log(document.getElementById(`asin${asin}`).classList);
   document.getElementById(`asin${asin}`).classList.toggle("disabled");
   trash.parentNode.parentNode.remove();
   const LIBRIRIMOSSI = document.querySelector("aside span");
