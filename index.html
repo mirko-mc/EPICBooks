@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+        <style>
+            img{
+                max-height: 200px;
+            }
+        </style>
     <title>EPICBooks</title>
 </head>
 
@@ -24,62 +28,11 @@
         </div>
     </header>
     <section id="superContainer" class="container">
-        <div class="row">
+        <div class="row ">
             <main class="col-10 d-flex flex-wrap justify-content-evenly gx-3 gy-4">
-                <!-- 
-                asin": "1940026091",
-                "title": "Pandemic (The Extinction Files, Book 1)",
-                "img": "https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg",
-                "price": 7.81,
-                "category": "scifi"
-                -->
-                <div class="col-4">
-                    <div class="card">
-                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-35281596/original/aadcf01d-ec84-4023-bcca-be8e5353adaf.jpeg?im_w=720"
-                            class="card-img-top" alt=".title">
-                        <div class="card-body">
-                            <h5 class="card-title text-truncate">.title</h5>
-                            <p class="card-text">.price €</p>
-                            <div class="d-flex justify-content-around">
-                                <a href="#" class="btn btn-primary disabled" onclick="addToCart(this)"
-                                    id="${i}">Aggiungi al carrello</a>
-                                <a href="" class="btn btn-primary">Salta prodotto</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 
-                ****************************************************************************************************************************************************************** -->
-
-
-                <!-- ****************************************************************************************************************************************************************** -->
             </main>
-            <aside id="cart" class="col-2 gx-3 gy-4">
-                <div class="col-12">
-                    <h3>CARRELLO</h3>
-                    <span>LIBRI AGGIUNTI : </span>
-                    <button class="btn btn-primary" onclick="clearCart()">Svuota carrello</button>
-                    <div class="card mb-3">
-                        <div class="card-body d-flex flex-wrap justify-content-between">
-                            <h5 class="w-100 title text-truncate">TITOLO</h5>
-                            <span class="card-text">PREZZO</span>
-                            <a href="" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                    <path
-                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </aside>
         </div>
     </section>
-    <footer>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
