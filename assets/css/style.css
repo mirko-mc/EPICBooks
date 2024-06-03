@@ -14,3 +14,7 @@ footer{
     background-color: black;
     height: 100px;
 }
+
+aside a ~ .card {
+  background-color: red;
+}
