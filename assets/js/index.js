@@ -59,9 +59,9 @@ function addToCart(cart) {
   LIBRIAGGIUNTI.textContent = `LIBRI AGGIUNTI : ${++count}`;
 
   getData().then((BOOKS) => {
-      for (const BOOK of BOOKS) {
-        if (BOOK.id === ASIN) {
-          ASIDE.innerHTML += `
+    for (const BOOK of BOOKS) {
+      if (BOOK.id === ASIN) {
+        ASIDE.innerHTML += `
           <div id="${ASIN}" class="card mb-1 w-100">
             <div class="card-body d-flex flex-wrap justify-content-between p-2">
               <h6 class="title text-truncate w-100">${BOOK.title}</h6>
@@ -72,8 +72,8 @@ delete
               </div>
               </div>
               `;
-        }
       }
+    }
   });
 }
 
@@ -100,7 +100,6 @@ async function getData() {
 function searchBook() {
   const INPUT = document.getElementById("searchBook").value.toLowerCase();
   main.innerHTML = "";
-  console.clear();
   /* QUESTA E' L'ISTRUZIONE SU CUI BASARSI PER CERCARE DA UNA N LETTERA IN POI ANZICHE' DALLA PRIMA
   Array.from(INPUT).length;
   */

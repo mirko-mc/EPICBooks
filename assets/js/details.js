@@ -13,22 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
         body.append(header);
         body.innerHTML += `
         <main id="details" class="container">
-        <div class="row">
+          <div class="row">
             <div class="col-6 offset-3 p-1">
-                <div class="card">
-                    <img src="${data.img}"
-                        class="card-img-top img-fluid" alt="${data.title}">
-                    <div class="card-body">
-                        <h5 class="card-title text-truncate">${data.title}</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sed fugit commodi, vitae
-                            repudiandae natus! Cupiditate corrupti laborum, beatae earum ab neque dolorem, accusantium
-                            eius laudantium, eos dolores odio atque.</p>
-                        <p class="card-text">Price: ${data.price.toFixed(2)} €</p>
-                    </div>
-                </div>
+              <div class="card">
+                <img src="${data.img}" class="card-img-top img-fluid" alt="${data.title}">
+                  <div class="card-body">
+                    <h5 class="card-title text-truncate">${data.title}</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sed fugit commodi, vitae
+                        repudiandae natus! Cupiditate corrupti laborum, beatae earum ab neque dolorem, accusantium
+                        eius laudantium, eos dolores odio atque.</p>
+                    <p class="card-text">Price: ${data.price.toFixed(2)} €</p>
+                  </div>
+              </div>
             </div>
-        </div>
-    </main>`;
+          </div>
+        </main>
+        `;
     body.append(script);
       });
     })
