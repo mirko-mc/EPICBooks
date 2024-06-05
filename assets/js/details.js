@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body.innerHTML += `
         <main id="details" class="container">
           <div class="row">
-            <div class="col-6 offset-3 p-1">
+            <div class="col-4 offset-4 p-1">
               <div class="card">
                 <img src="${data.img}" class="card-img-top img-fluid" alt="${data.title}">
                   <div class="card-body">
