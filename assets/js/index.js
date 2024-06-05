@@ -17,60 +17,63 @@ function createCards(id, image, title, price) {
       <img src="${image}" class="card-img-top img-fluid" alt="${title}">
       <div class="card-body">
         <h5 class="card-title text-truncate">${title}</h5>
-        <p class="card-text">${price} €</p>
-      <div class="d-flex justify-content-around">
-        <button class="btn btn-primary" onclick="addToCart(this)" id="asin${id}">Aggiungi al carrello</button>
+        <p class="card-text">Price: ${price} €</p>
+        <div class="d-flex justify-content-around">
+          <button class="btn btn-secondary" onclick="addToCart(this)" id="${id}"><span class="material-symbols-outlined">
+add_shopping_cart
+</span></button>
+          <button class="btn btn-secondary" onclick="jump(this)"><span class="material-symbols-outlined">
+visibility_off
+</span></button>
+          <a href=./details.html?id=${id} target="_blank" class="btn btn-secondary"><span class="material-symbols-outlined">
+info
+</span></a>
+        </div>
       </div>
     </div>
   </div>
   `;
 }
+
+function jump(card) {
+  card.parentNode.parentNode.parentNode.parentNode.classList.toggle("d-none");
+}
 function addToCart(cart) {
-  const TRASH = `<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    class="bi bi-trash"
-    viewBox="0 0 16 16"
-  >
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-  </svg>`;
-  const ASIN = cart.id.slice(4);
+  cart.classList.toggle("disabled");
+  const ASIN = cart.id;
   const SUPERCONTAINER = document.querySelector("#superContainer .row");
   if (!document.getElementById("cart")) {
+    main.classList.toggle("col-12");
+    main.classList.toggle("col-10");
     SUPERCONTAINER.innerHTML += `
     <aside id="cart" class="col-2 gx-3 gy-4">
-      <div class="col-12 d-flex flex-column align-items-center">
+      <div class="col-12 d-flex flex-column align-items-center sticky-top">
       <h3>CARRELLO</h3>
       <span>LIBRI AGGIUNTI : </span>
-      <button class="btn btn-primary mb-2" onclick="clearCart()">Svuota carrello</button>
+      <button class="btn btn-secondary mb-2" onclick="clearCart()">Svuota carrello</button>
       </div>
     </aside>`;
   }
-
-  const ADDED = document.querySelector(`aside .${cart.id}`);
   const LIBRIAGGIUNTI = document.querySelector("aside span");
   const ASIDE = document.querySelector("aside .col-12");
   LIBRIAGGIUNTI.textContent = `LIBRI AGGIUNTI : ${++count}`;
+
   getData().then((BOOKS) => {
-    if (!ADDED) {
       for (const BOOK of BOOKS) {
         if (BOOK.id === ASIN) {
           ASIDE.innerHTML += `
-          <div class="card mb-1 w-100">
+          <div id="${ASIN}" class="card mb-1 w-100">
             <div class="card-body d-flex flex-wrap justify-content-between p-2">
               <h6 class="title text-truncate w-100">${BOOK.title}</h6>
               <span class="card-text">${BOOK.price}</span>
-              <a href="#" class="btn btn-primary" onclick=deleteBook(this,${ASIN})>${TRASH}</a
-            </div>
-          </div>
-          `;
-          cart.classList.toggle("disabled");
+              <a href="#" class="btn btn-secondary" onclick="deleteBook(this,'${ASIN}')"><span class="material-symbols-outlined">
+delete
+</span></a>
+              </div>
+              </div>
+              `;
         }
       }
-    } else alert("Libro già presente nel carrello.");
   });
 }
 
@@ -85,7 +88,7 @@ async function getData() {
     books = data.map((item) => ({
       id: item.asin,
       title: item.title,
-      price: item.price,
+      price: item.price.toFixed(2),
       image: item.img,
     }));
     return books;
@@ -112,16 +115,22 @@ function searchBook() {
 
 function clearCart() {
   document.getElementById("cart").remove();
+  main.classList.toggle("col-12");
+  main.classList.toggle("col-10");
   const BUTTONS = document.querySelectorAll("main .card .disabled");
   for (const BUTTON of BUTTONS) {
     BUTTON.classList.toggle("disabled");
   }
   count = 0;
 }
-
 function deleteBook(trash, asin) {
-  document.getElementById(`asin${asin}`).classList.toggle("disabled");
+  document.getElementById(asin).classList.toggle("disabled");
   trash.parentNode.parentNode.remove();
   const LIBRIRIMOSSI = document.querySelector("aside span");
   LIBRIRIMOSSI.textContent = `LIBRI AGGIUNTI : ${--count}`;
+  if (count === 0) {
+    document.getElementById("cart").remove();
+    main.classList.toggle("col-12");
+    main.classList.toggle("col-10");
+  }
 }
