@@ -1,5 +1,4 @@
 let books = null;
-let main = document.querySelector("main");
 let count = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function createCards(id, image, title, price) {
+  const main = document.querySelector("main");
   main.innerHTML += `
   <div class="col-3 p-1">
     <div class="card">
@@ -38,7 +38,9 @@ info
 function jump(card) {
   card.parentNode.parentNode.parentNode.parentNode.classList.toggle("d-none");
 }
+
 function addToCart(cart) {
+  const main = document.querySelector("main");
   cart.classList.toggle("disabled");
   const ASIN = cart.id;
   const SUPERCONTAINER = document.querySelector("#superContainer .row");
@@ -97,7 +99,9 @@ async function getData() {
     return [];
   }
 }
+
 function searchBook() {
+  const main = document.querySelector("main");
   const INPUT = document.getElementById("searchBook").value.toLowerCase();
   main.innerHTML = "";
   /* QUESTA E' L'ISTRUZIONE SU CUI BASARSI PER CERCARE DA UNA N LETTERA IN POI ANZICHE' DALLA PRIMA
@@ -113,6 +117,7 @@ function searchBook() {
 }
 
 function clearCart() {
+  const main = document.querySelector("main");
   document.getElementById("cart").remove();
   main.classList.toggle("col-12");
   main.classList.toggle("col-10");
@@ -122,12 +127,14 @@ function clearCart() {
   }
   count = 0;
 }
+
 function deleteBook(trash, asin) {
   document.getElementById(asin).classList.toggle("disabled");
   trash.parentNode.parentNode.remove();
   const LIBRIRIMOSSI = document.querySelector("aside span");
   LIBRIRIMOSSI.textContent = `LIBRI AGGIUNTI : ${--count}`;
   if (count === 0) {
+    const main = document.querySelector("main");
     document.getElementById("cart").remove();
     main.classList.toggle("col-12");
     main.classList.toggle("col-10");
